@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="shade">
+    <ion-title class="ion-text-center">Inscription</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-padding">
+    <ion-row class="ion-text-center">
+      <ion-col size="12">
+        <h2 class="ion-text-uppercase ion-margin auth-title">Connectez-vous</h2>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item lines="full" class="auth-input">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" [(ngModel)]="email"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item lines="full" class="auth-input">
+          <ion-label position="floating">Mot de passe</ion-label>
+          <ion-input type="password" [(ngModel)]="password"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-button expand="full" color="primary" class="auth-button" (click)="inscrire()">S'inscrire</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+        <p id="error-message" class="error-message ion-margin">{{ errorMessage }}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

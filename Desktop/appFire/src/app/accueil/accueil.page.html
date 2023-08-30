@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+  <ion-title> Liste des factures</ion-title>
+  </ion-toolbar>
+  <ion-toolbar> 
+  <ion-searchbar [(ngModel)]="searchQuery" (ionChange)="search()" placeholder="Rechercher par numéro ou montant"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <ion-item *ngFor="let facture of (factures | async)">
+    <ion-list>
+
+      <div class="form">
+      <!-- Affichage des données existantes de la facture -->
+      <ion-label class="facture-details">
+        <h2>Facture n°{{ facture.num }}</h2>
+        <p>Description: {{ facture.des }}</p>
+        <p>Montant: {{ facture.montant }} TND</p>
+        <p>Date Facturation: {{ facture.datefac | date:'dd MMMM yyyy - h:mm a' }}</p>
+        <p>Date Livraison: {{ facture.dateliv | date:'dd MMMM yyyy - h:mm a'}}</p>
+      </ion-label>
+      </div>
+      
+      <!-- Formulaire de mise à jour (visible uniquement en mode édition) -->
+      <div [hidden]="!facture.editing" class="update-form">
+        <ion-input type="number" placeholder="Nouveau montant" [(ngModel)]="facture.updatedMontant"></ion-input>
+        <ion-input type="text" placeholder="Nouvelle description" [(ngModel)]="facture.updatedDes"></ion-input>
+        <ion-input type="date" placeholder="Nouvelle date fac" [(ngModel)]="facture.updatedDatefac"></ion-input>
+        <ion-input type="date" placeholder="Nouvelle date liv" [(ngModel)]="facture.updatedDateliv"></ion-input>
+        <ion-input type="text" placeholder="Nouvelle image URL" [(ngModel)]="facture.updatedImageUrl"></ion-input>
+      
+        <ion-button color="success" (click)="updateFacture(facture)">Enregistrer</ion-button>
+        <ion-button color ="medium" (click)="cancelEdit(facture)">Annuler</ion-button>
+      </div>
+      <!-- Bouton de modification (visible uniquement en mode non édition) -->
+      <ion-button  color ="primary" size="small" fill="outline" *ngIf="!facture.editing" (click)="toggleEdit(facture)" >
+        <ion-icon name="create"></ion-icon> 
+      </ion-button>
+
+      <!-- Bouton de suppression -->
+        <ion-button size="small" fill="outline" color="danger" (click)="deleteFacture(facture.id)">
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>
+    </ion-list>
+  </ion-item>
+
+  <!-- Bouton d'ajout en bas de la liste -->
+  <ion-row>
+    <ion-col size="12" class="ion-text-center">
+      <ion-button expand="block" color="secondary" (click)="ajouter_facture()">Ajouter</ion-button>
+    </ion-col>
+  </ion-row>
+
+</ion-content>

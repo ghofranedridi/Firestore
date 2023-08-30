@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Ajouter une Facture
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">Montant-TND</ion-label>
+      <ion-input [(ngModel)]="montant" type="number" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">N° de facture</ion-label>
+      <ion-input [(ngModel)]="num" type="number" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Description</ion-label>
+      <ion-input [(ngModel)]="des" type="text" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label  position="floating"> Date Facture</ion-label>
+      <ion-datetime [(ngModel)]="datefac" displayFormat="MM/DD/YYYY" pickerFormat="MM DD YYYY" required></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Date Livraison</ion-label>
+      <ion-datetime [(ngModel)]="dateliv" displayFormat="MM/DD/YYYY" pickerFormat="MM DD YYYY" required></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Image</ion-label>
+      <input type="file" (change)="onImageSelected($event)" required>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" (click)="ajouterFacture()" [disabled]="!isValidForm()">Ajouter Facture</ion-button>
+</ion-content>
